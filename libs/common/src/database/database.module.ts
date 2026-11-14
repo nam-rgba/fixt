@@ -22,6 +22,4 @@ import { DataSource } from 'typeorm';
     }),
   ],
 })
-export class DatabaseModule {
-  constructor(private datasource: DataSource) {}
-}
+export class DatabaseModule {}

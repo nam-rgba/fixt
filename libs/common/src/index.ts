@@ -1,2 +1,2 @@
-export * from './common.module.js';
-export * from './common.service.js';
+export * from './database/index.js';
+export * from './config/index.js';
