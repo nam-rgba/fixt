@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '../config/config.module.js';
+import { DataSource } from 'typeorm';
 
 @Module({
   imports: [
@@ -21,4 +22,6 @@ import { ConfigModule } from '../config/config.module.js';
     }),
   ],
 })
-export class DatabaseModule {}
+export class DatabaseModule {
+  constructor(private datasource: DataSource) {}
+}
