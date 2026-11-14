@@ -1,8 +1,26 @@
 import { Injectable } from '@nestjs/common';
+import { CreateOrderDto } from './orders/dto/create-order.dto.js';
+import { UpdateOrderDto } from './orders/dto/update-order.dto.js';
 
 @Injectable()
 export class OrdersService {
-  getHello(): string {
-    return 'Hello World!';
+  create(createOrderDto: CreateOrderDto) {
+    return 'This action adds a new order';
+  }
+
+  findAll() {
+    return `This action returns all orders`;
+  }
+
+  findOne(id: number) {
+    return `This action returns a #${id} order`;
+  }
+
+  update(id: number, updateOrderDto: UpdateOrderDto) {
+    return `This action updates a #${id} order`;
+  }
+
+  remove(id: number) {
+    return `This action removes a #${id} order`;
   }
 }
