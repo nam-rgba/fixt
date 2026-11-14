@@ -1,8 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
-import { BaseEntity } from './base.schema.js';
+import { Logger } from '@nestjs/common';
+import { CoreEntity } from './base.schema.js';
 import { DeepPartial, Repository } from 'typeorm';
 
-export abstract class BaseRepository<T extends BaseEntity> {
+export abstract class BaseRepository<T extends CoreEntity> {
   protected abstract readonly logger: Logger;
 
   constructor(protected readonly repo: Repository<T>) {}
