@@ -1,11 +1,14 @@
 import { Injectable } from '@nestjs/common';
 import { CreateOrderDto } from './orders/dto/create-order.dto.js';
 import { UpdateOrderDto } from './orders/dto/update-order.dto.js';
+import { OrderRepository } from './order.repository.js';
 
 @Injectable()
 export class OrdersService {
+  constructor(private readonly orderRepository: OrderRepository) {}
+
   create(createOrderDto: CreateOrderDto) {
-    return 'This action adds a new order';
+    return this.orderRepository.create(createOrderDto);
   }
 
   findAll() {
