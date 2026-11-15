@@ -1,27 +1,44 @@
 import {
   BaseEntity,
+  BeforeInsert,
+  BeforeRemove,
+  BeforeUpdate,
   Column,
-  CreateDateColumn,
-  DeleteDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn,
 } from 'typeorm';
+import dayjs from 'dayjs';
 
 @Entity()
 export abstract class CoreEntity extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @CreateDateColumn({ type: 'timestamptz' })
-  createdAt: Date;
+  @Column({ type: 'int', unsigned: true })
+  createdAt!: number;
+  @BeforeInsert()
+  setCreatedAt() {
+    this.createdAt = dayjs().unix();
+    this.updatedAt = dayjs().unix();
+  }
 
-  @UpdateDateColumn({ type: 'timestamptz' })
-  updatedAt: Date;
+  @Column({
+    type: 'int',
+    unsigned: true,
+  })
+  updatedAt!: number;
+  @BeforeUpdate()
+  setUpdatedAt() {
+    this.updatedAt = dayjs().unix();
+  }
 
   @Column({ type: 'boolean', default: false })
   isDeleted: boolean;
 
-  @DeleteDateColumn({ type: 'timestamptz', nullable: true })
-  deletedAt?: Date;
+  @Column({ type: 'int', nullable: true })
+  deletedAt?: number;
+  @BeforeRemove()
+  setDeletedAt() {
+    this.deletedAt = dayjs().unix();
+  }
 }
